@@ -1,0 +1,5 @@
+version: '2'
+services:
+  tensorflow:
+    image: docker-tensorflow-aarch64
+    build: ./tensorflow

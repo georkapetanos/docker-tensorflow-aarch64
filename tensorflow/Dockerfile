@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:focal
+FROM --platform=linux/arm64 ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive 
 
@@ -21,6 +21,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 	cython3 \
 	libatlas-base-dev \
 	openmpi-bin \
+	openssh-server \
 	libopenmpi-dev \
 	python3-dev \
 	python3 \
@@ -29,9 +30,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 	
 RUN pip3 install -U wheel mock six
 RUN pip3 install --upgrade pip
-#RUN pip install protobuf==3.20.*
+RUN pip3 install protobuf==3.20.*
 
 RUN wget https://github.com/PINTO0309/Tensorflow-bin/releases/download/v2.8.0/tensorflow-2.8.0-cp38-none-linux_aarch64.whl
-#RUN chmod +x download_tensorflow-2.8.0-cp38-none-linux_aarch64_numpy1221.sh
-#RUN ./download_tensorflow-2.8.0-cp38-none-linux_aarch64_numpy1221.sh
 RUN pip3 install /tensorflow-2.8.0-cp38-none-linux_aarch64.whl
+RUN rm /tensorflow-2.8.0-cp38-none-linux_aarch64.whl
