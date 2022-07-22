@@ -1,0 +1,6 @@
+# Plain credentials for RabbitMQ broker connection
+
+username: admin
+password: 1761856778
+MQserver: 192.168.2.101
+port: 5672

@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 	tzdata \
 	nano
 	
-RUN pip3 install -U bmp280 smbus2 getmac
+RUN pip3 install -U bmp280 smbus2 getmac pika pyyaml
 
 ENV UDEV=on
 ENV TZ="Europe/Athens"
@@ -20,3 +20,4 @@ RUN ln -fs /usr/share/zoneinfo/Europe/Athens /etc/localtime && \
 	dpkg-reconfigure -f noninteractive tzdata
 
 COPY sensor_bmp.py /root/sensor.py
+COPY config.yaml /root/config.yaml
