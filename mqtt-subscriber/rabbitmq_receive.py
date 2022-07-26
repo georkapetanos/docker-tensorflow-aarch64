@@ -4,7 +4,7 @@ import pika, sys, os, json
 
 def main():
 	credentials = pika.PlainCredentials('admin', '1761856778')
-	parameters = pika.ConnectionParameters('192.168.2.101', 5672, '/', credentials)
+	parameters = pika.ConnectionParameters('peachblack.duckdns.org', 5672, '/', credentials)
 	connection = pika.BlockingConnection(parameters)
 	channel = connection.channel()
 	channel.queue_declare(queue='sensor')

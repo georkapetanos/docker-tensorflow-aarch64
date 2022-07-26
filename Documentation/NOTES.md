@@ -24,3 +24,7 @@
 balena-engine cp 32bc8338addf:/root/sensor.py /tmp/sensor.py
 scp -P 22222 root@192.168.2.9:/tmp/sensor.py ./sensor.py
 ```
+
+## Pinout
+
+<img src="./pinout.png" alt="Pinout" width="500"/>
