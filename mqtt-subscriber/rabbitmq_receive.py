@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import pika, sys, os, json
+from datetime import date
 
 def main():
 	credentials = pika.PlainCredentials('admin', '1761856778')
@@ -8,6 +9,8 @@ def main():
 	connection = pika.BlockingConnection(parameters)
 	channel = connection.channel()
 	channel.queue_declare(queue='sensor')
+	
+	f = open(date.today().strftime("%Y-%m-%d.log"), "a")
 
 	# This is executed on every received message, decode and print JSON values
 	def callback(ch, method, properties, body):
@@ -19,6 +22,8 @@ def main():
 		mac = json_object["mac"]
 		feature = json_object["feature"]
 		print("\nDevice: "+mac+"\n"+time+", "+temperature+" C, "+pressure+" hPa")
+		f.write(time+" \t"+temperature+" \t"+pressure+"\n")
+		f.flush()
 
 	channel.basic_consume(queue='sensor', on_message_callback=callback, auto_ack=True)
 
