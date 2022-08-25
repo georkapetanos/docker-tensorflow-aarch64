@@ -29,6 +29,7 @@ def log_local(f, curtime, temperature, pressure):
 		f.open(startdate, "a")
 
 	f.write(curtime+" "+temperature+" "+pressure+"\n")
+	f.flush()
 	print(curtime+" INFO Temp = "+temperature+" C, pressure = "+pressure+" hPa")
 
 def send_json(time, temp, pressure):
